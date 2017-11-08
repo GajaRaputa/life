@@ -42,5 +42,45 @@ public class GridTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of switchCell method, of class Grid.
+     */
+    @Test
+    public void testSwitchCell() {
+        System.out.println("switchCell");
+        int x = 0;
+        int y = 0;
+        Grid instance = new Grid();
+        instance.switchCell(x, y);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of nextState method, of class Grid.
+     */
+    @Test
+    public void testNextState() {
+        System.out.println("nextState");
+        Grid instance = new Grid();
+        instance.nextState();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getGrid method, of class Grid.
+     */
+    @Test
+    public void testGetGrid() {
+        System.out.println("getGrid");
+        Grid instance = new Grid();
+        String expResult = "";
+        String result = instance.getGrid();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
