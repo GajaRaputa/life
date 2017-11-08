@@ -6,11 +6,11 @@ package life;
  */
 public class Cell {
     public Cell() {
-        this.state = false;
+        state = false;
     }
     
     public boolean getState() {
-        return this.state;
+        return state;
     }
     
     public void setState(boolean state) {
@@ -18,7 +18,7 @@ public class Cell {
     }
     
     public boolean nextState(int numOfNbrs) {
-        if(this.state)  {
+        if(state)  {
             if(numOfNbrs < 2 || numOfNbrs > 3)
                 return false;
         }
@@ -27,7 +27,7 @@ public class Cell {
                 return true;
         }
         
-        return this.state;
+        return state;
     }
     
     private boolean state;

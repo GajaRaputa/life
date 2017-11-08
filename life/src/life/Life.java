@@ -9,18 +9,13 @@ import ui.MainWindow;
 public class Life {
 
     public static void main(String[] args) {
-        MainWindow mainWindow = new MainWindow();
+        Grid grid = new Grid();
         
-        Grid g = new Grid();
+        System.out.println("---");
+        System.out.println(grid.getGrid());
+        System.out.println("---"); 
         
-        System.out.println(g.getGrid());
-        System.out.println("---");
-        g.nextState();
-        System.out.println(g.getGrid());
-        System.out.println("---");
-        g.nextState();
-        System.out.println(g.getGrid());      
-               
+        MainWindow mainWindow = new MainWindow(grid);         
     }
     
 }
