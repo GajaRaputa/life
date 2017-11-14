@@ -5,6 +5,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import life.Grid;
 
 /**
@@ -12,9 +13,10 @@ import life.Grid;
  * @author Gaja Raputa, Agnieszka Wojtowicz
  */
 public class MenuBar extends JMenuBar {
-    public MenuBar(Grid grid)
+    public MenuBar(Grid grid, JPanel gridPanel)
     {
         this.grid = grid;
+        this.gridPanel = gridPanel;
         
         menuOptions = new JMenu("Options");
         menuItemSave = new JMenuItem("Save");
@@ -78,4 +80,5 @@ public class MenuBar extends JMenuBar {
     private JMenuItem menuItemAbout;
     
     private Grid grid;
+    private JPanel gridPanel;
 }

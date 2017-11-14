@@ -9,12 +9,7 @@ import ui.MainWindow;
 public class Life {
 
     public static void main(String[] args) {
-        Grid grid = new Grid();
-        
-        System.out.println("---");
-        System.out.println(grid.getGrid());
-        System.out.println("---"); 
-        
+        Grid grid = new Grid();        
         MainWindow mainWindow = new MainWindow(grid);         
     }
     

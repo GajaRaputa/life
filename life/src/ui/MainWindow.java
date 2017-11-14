@@ -11,17 +11,18 @@ import life.Grid;
 public class MainWindow extends JFrame {
     public MainWindow(Grid grid) {
         this.grid = grid;
-        
-        menuBar = new MenuBar(this.grid);
-        buttonsPanel = new ButtonsPanel(this.grid);
         gridPanel = new GridPanel(this.grid);
+        
+        menuBar = new MenuBar(this.grid, gridPanel);
+        buttonsPanel = new ButtonsPanel(this.grid, gridPanel);
         
         setUp();
     }
     
     private void setUp() {
         this.setTitle("John Conway's Game of Life [BETA]");
-        this.setSize(800, 600);
+        this.setSize(787, 609);
+        this.setResizable(false);
         
         this.setJMenuBar(menuBar);
         
