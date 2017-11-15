@@ -19,16 +19,10 @@ public class Grid {
             for (int j = 0; j < width; j++) {
                 tempGrid[i][j] = new Cell();
             }
-        
-        this.grid[3][1].setState(true);
-        this.grid[3][2].setState(true);
-        this.grid[3][3].setState(true);
-        this.grid[2][3].setState(true);
-        this.grid[1][2].setState(true);
     }
     
     public void switchCell(int x, int y) {
-        grid[x][y].setState(!grid[x][y].getState());
+        grid[x + 1][y + 1].setState(!grid[x + 1][y + 1].getState());
     }
     
     public void nextState()

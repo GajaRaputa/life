@@ -21,7 +21,6 @@ public class GridPanel extends JPanel implements MouseListener{
 
     private void setUp() {
         this.addMouseListener(this);
-        addMouseListener(this);
     }
     
     @Override
@@ -65,8 +64,8 @@ public class GridPanel extends JPanel implements MouseListener{
         int heightOfRow = this.getHeight() / grid.getHeight();
         int widthOfCol = this.getWidth() / grid.getWidth();
         
-        int x = p.x / heightOfRow;
-        int y = p.y / widthOfCol;
+        int x = p.y / widthOfCol;
+        int y = p.x / heightOfRow;
         
         grid.switchCell(x, y);
         this.repaint();
