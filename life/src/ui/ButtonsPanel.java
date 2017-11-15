@@ -53,8 +53,7 @@ public class ButtonsPanel extends JPanel{
         exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new Runnable() {
            public void run() {
-               if (started) {
-                    
+               if (started) {          
                     grid.nextState();
                     gridPanel.repaint();
                }
