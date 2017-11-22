@@ -37,12 +37,6 @@ public class CellTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of getState method, of class Cell.
      */
@@ -50,11 +44,12 @@ public class CellTest {
     public void testGetState() {
         System.out.println("getState");
         Cell instance = new Cell();
-        boolean expResult = false;
+        
+        instance.setState(true);
+        
+        boolean expResult = true;
         boolean result = instance.getState();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,11 +58,14 @@ public class CellTest {
     @Test
     public void testSetState() {
         System.out.println("setState");
-        boolean state = false;
+        boolean state = true;
         Cell instance = new Cell();
+        
         instance.setState(state);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        boolean expResult = true;
+        boolean result = instance.getState();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -77,12 +75,18 @@ public class CellTest {
     public void testNextState() {
         System.out.println("nextState");
         int numOfNbrs = 0;
-        Cell instance = new Cell();
-        boolean expResult = false;
-        boolean result = instance.nextState(numOfNbrs);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Cell instanceDead = new Cell(); instanceDead.setState(false);
+        Cell instanceAlive = new Cell(); instanceAlive.setState(true);
+        
+        boolean[] expResult  = {false, false, false, true, false, false, false, false, //dead
+                                false, false, true, true, false, false, false, false}; //alive
+
+        
+        for (int i = 0; i < 8; i++)
+        {
+            assertEquals(expResult[i], instanceDead.nextState(i));
+            assertEquals(expResult[i+8], instanceAlive.nextState(i));
+        }
     }
     
 }

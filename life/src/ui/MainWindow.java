@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
     }
     
     private void setUp() {
-        this.setTitle("John Conway's Game of Life [BETA]");
+        this.setTitle("John Conway's Game of Life");
         this.setSize(787, 609);
         this.setResizable(false);
         

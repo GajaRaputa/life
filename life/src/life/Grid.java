@@ -54,6 +54,15 @@ public class Grid {
         return retGrid;
     }
     
+    public void setGrid(String grid) {
+        for (int i = 1; i < height - 1; i++) {
+            for (int j = 1; j < width - 1; j++) {
+                this.grid[i][j].setState(grid.startsWith("1") ? true : false);
+                grid = grid.substring(1);
+            }
+        }
+    }
+    
     private int countNbrs(int x, int y) {
         int n = 0;
         

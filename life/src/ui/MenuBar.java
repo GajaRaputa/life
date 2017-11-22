@@ -1,6 +1,14 @@
 package ui;
 
 import java.awt.Component;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -40,6 +48,77 @@ public class MenuBar extends JMenuBar {
     }
     
     private void setUpMenuOptions() {
+        menuItemSave.addActionListener(new java.awt.event.ActionListener() {
+            private Component frame;
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFileChooser fileChooser = new JFileChooser();
+                Component modalToComponent = null;
+                
+                fileChooser.setSelectedFile(new File("save.txt"));
+                if (fileChooser.showSaveDialog(modalToComponent) == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    
+                    if (!file.exists()) {
+                        try {
+                            file.createNewFile();
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                    try {
+                        FileOutputStream fop = new FileOutputStream(file);
+                        byte[] gridInBytes = grid.getGrid().getBytes();
+                        fop.write(gridInBytes);
+                        fop.flush();
+                        fop.close();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                    }                   
+                }
+            }
+        });
+        
+        menuItemLoad.addActionListener(new java.awt.event.ActionListener() {
+            private Component frame;
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFileChooser fileChooser = new JFileChooser();
+                Component modalToComponent = null;
+                
+                if (fileChooser.showOpenDialog(modalToComponent) == JFileChooser.APPROVE_OPTION) {
+                    FileInputStream fip = null;
+                    try {
+                        File file = fileChooser.getSelectedFile();
+                        fip = new FileInputStream(file);
+                        
+                        int inputState;
+                        String inputGrid = "";
+                        
+                        while ((inputState = fip.read()) != -1) {
+                            inputGrid += (char)inputState;
+                        }
+                        
+                        grid.setGrid(inputGrid);
+                        gridPanel.repaint();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        try {
+                            fip.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    }                   
+            }
+        });
+        
         menuOptions.add(menuItemSave);
         menuOptions.add(menuItemLoad);
     }
@@ -50,7 +129,7 @@ public class MenuBar extends JMenuBar {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JOptionPane.showMessageDialog(frame,
-                "Lorem ipsum...",
+                "Game of Life cellular automaton devised by the British mathematician John Conway",
                 "Help",
                 JOptionPane.INFORMATION_MESSAGE);
             }

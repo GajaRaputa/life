@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -26,7 +28,7 @@ public class ButtonsPanel extends JPanel{
         stopButton = new JButton("STOP");
         clearButton = new JButton("CLEAR");
         
-        speedSlider = new JSlider(0, 9, 3);
+        speedSlider = new JSlider(0, 8, 3);
         
         started = false;
         speed = 900 - (speedSlider.getValue() * 100);
@@ -53,9 +55,14 @@ public class ButtonsPanel extends JPanel{
         exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new Runnable() {
            public void run() {
-               if (started) {          
-                    grid.nextState();
-                    gridPanel.repaint();
+               if (started) {
+                   try {
+                       TimeUnit.MILLISECONDS.sleep(speed);
+                   } catch (InterruptedException ex) {
+                       Logger.getLogger(ButtonsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+                   grid.nextState();
+                   gridPanel.repaint();
                }
            }
        }, 0, 100, TimeUnit.MILLISECONDS);
